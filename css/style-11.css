@@ -62,6 +62,15 @@ min-width:300px;
   margin: 0 auto; /* Căn giữa */
 	filter: grayscale(0%);
 }
+#language-popup, #language-popup-overlay {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.hidden {
+    opacity: 0 !important;
+}
+
 
 .nav .nav-item .nav-link{ color:#666666 }
 

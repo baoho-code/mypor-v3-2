@@ -1,32 +1,43 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const languagePopup = document.getElementById('language-popup');
-  const languagePopupOverlay = document.getElementById('language-popup-overlay');
-  const mainContent = document.getElementById('main-content');
+    const selectedLanguage = localStorage.getItem('selectedLanguage');
+    const languagePopup = document.getElementById('language-popup');
+    const languagePopupOverlay = document.getElementById('language-popup-overlay');
+    const mainContent = document.getElementById('main-content');
 
-  // Kiểm tra nếu popup đã bị đóng, thì không hiển thị lại
-  if (!localStorage.getItem('popupClosed')) {
-    languagePopup.style.display = 'block';
-    languagePopupOverlay.style.display = 'block';
-    mainContent.classList.add('language-selected');
-  }
+    console.log("Ngôn ngữ đã lưu:", selectedLanguage); // Debug kiểm tra trạng thái lưu trữ
+
+    // Nếu đã chọn ngôn ngữ, tải nội dung bằng fetch() thay vì hiển thị pop-up
+    if (selectedLanguage === 'en') {
+        loadContent('en');
+    } else if (selectedLanguage === 'vi') {
+        loadContent('vi');
+    } else {
+        // Nếu chưa chọn ngôn ngữ, hiển thị pop-up
+        languagePopup.style.display = 'block';
+        languagePopupOverlay.style.display = 'block';
+        mainContent.classList.add('language-selected');
+    }
 });
 
 function loadContent(lang) {
+    localStorage.setItem('selectedLanguage', lang); // Lưu lựa chọn ngôn ngữ
+
     const languagePopup = document.getElementById('language-popup');
     const languagePopupOverlay = document.getElementById('language-popup-overlay');
     const loadingAnimation = document.getElementById('loading-animation');
     const loadingMedia = document.getElementById('loading-media');
     const mainContent = document.getElementById('main-content');
 
-    // Đánh dấu popup đã bị đóng
-    localStorage.setItem('popupClosed', 'true');
-
-    languagePopup.style.display = 'none';
-    languagePopupOverlay.style.display = 'none';
+    languagePopup.classList.add('hidden'); // Ẩn pop-up bằng opacity thay vì display: none
+    languagePopupOverlay.classList.add('hidden');
     loadingAnimation.style.display = 'block';
+
+    // Cập nhật GIF loading
     loadingMedia.src = 'video/Test-character-hi.gif';
 
-    let fetchUrl = lang === 'en' ? 'https://baoho-code.github.io/my-por-v3-2/en/index.html' : 'https://baoho-code.github.io/my-por-v3-2/vi/index.html';
+    let fetchUrl = lang === 'en' ? '/mypor-v3-2/en/index.html' : '/mypor-v3-2/vi/index.html';
+
+    console.log("Đang fetch nội dung từ:", fetchUrl); // Debug kiểm tra URL fetch
 
     fetch(fetchUrl)
         .then(response => {
@@ -40,10 +51,8 @@ function loadContent(lang) {
             history.pushState(null, '', fetchUrl); // Cập nhật URL mà không reload
         })
         .catch(error => {
-            console.error(error);
+            console.error("Fetch thất bại:", error);
             alert(`Không thể tải phiên bản ngôn ngữ (${lang}).`);
-            window.location.href = fetchUrl;
+            window.location.href = fetchUrl; // Điều hướng khi fetch thất bại
         });
 }
-
-// JavaScript Document
