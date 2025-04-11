@@ -32,8 +32,9 @@ function loadContent(lang) {
     languagePopupOverlay.classList.add('hidden');
     loadingAnimation.style.display = 'block';
 
-    // Cập nhật GIF loading
-    loadingMedia.src = 'video/Test-character-hi.gif';
+    // Kiểm tra lại đường dẫn GIF loading
+    let gifPath = '/mypor-v3-2/video/Test-character-hi.gif';
+    loadingMedia.src = gifPath;
 
     let fetchUrl = lang === 'en' ? '/mypor-v3-2/en/index.html' : '/mypor-v3-2/vi/index.html';
 
@@ -48,7 +49,12 @@ function loadContent(lang) {
             loadingAnimation.style.display = 'none';
             mainContent.innerHTML = html;
             mainContent.classList.add('language-selected');
-            history.pushState(null, '', fetchUrl); // Cập nhật URL mà không reload
+
+            // Ẩn pop-up ngay sau khi nội dung load xong
+            document.getElementById('language-popup').style.display = 'none';
+            document.getElementById('language-popup-overlay').style.display = 'none';
+
+            history.pushState(null, '', fetchUrl);
         })
         .catch(error => {
             console.error("Fetch thất bại:", error);
