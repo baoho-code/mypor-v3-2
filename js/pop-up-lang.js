@@ -61,4 +61,7 @@ function loadContent(lang) {
             alert(`Không thể tải phiên bản ngôn ngữ (${lang}).`);
             window.location.href = fetchUrl; // Điều hướng khi fetch thất bại
         });
+	document.getElementById('language-popup').style.display = 'none';
+document.getElementById('language-popup-overlay').style.display = 'none';
+
 }
