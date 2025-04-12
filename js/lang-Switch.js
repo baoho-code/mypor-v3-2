@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (selectedLang === currentLang) return;
 
     // Điều hướng sang ngôn ngữ mới
-    const targetPage = window.location.pathname.split('/').pop(); // lấy tên file index.html
-    window.location.href = `/${selectedLang}/${targetPage}`;
+    const repoName = window.location.pathname.split('/')[1];
+    window.location.href = `/${repoName}/${lang}/index.html`;
   });
 });
