@@ -16,6 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Điều hướng sang ngôn ngữ mới
     const repoName = window.location.pathname.split('/')[1];
-    window.location.href = `/${repoName}/${lang}/index.html`;
+    window.location.href = `/${repoName}/${selectedLang}/index.html`;  // Sửa 'lang' thành 'selectedLang'
   });
 });
