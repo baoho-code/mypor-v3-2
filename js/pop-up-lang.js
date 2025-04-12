@@ -17,6 +17,6 @@ function loadContent(lang) {
 
   // Chuyển trang sau 3 giây
   setTimeout(() => {
-    window.location.href = `/${lang}/index.html`;
+    window.location.href = `/${repoName}/${lang}/index.html`;
   }, 3000);
 }
