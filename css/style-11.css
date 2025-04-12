@@ -9,13 +9,24 @@
   font-variation-settings:
     "wdth" 100;
 }
+
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
 body{
 	font-family:Georama;
 	}
 #main-content{filter: blur(10px) grayscale(100%);
-  transition: filter 0.3s ease-in-out;}
+  transition: filter 0.3s ease-in-out;position: relative;
+    z-index: 1;}
 #main-content.language-selected {
 	filter: blur(0px) grayscale(0%); font-family:Georama;}
+
 section{ 
 width: 100%;
 	min-height: 400px;
@@ -37,8 +48,20 @@ width: 100%;
   z-index: 1000;/* Đảm bảo pop-up nằm trên lớp phủ */
 min-width:300px;
 	min-height:200px;
+	display: none;
 }
-
+#language-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none; /* Ẩn overlay ban đầu */
+    pointer-events: none; /* Ngăn chặn tương tác với overlay */
+}
+#language-popup-overlay.language-selected { pointer-events: none; /* Vô hiệu hóa tương tác */ opacity: 0.5; /* Giảm độ sáng để cho thấy rằng nó không thể tương tác */ }
 #loading-animation {
   position: fixed;
   top: 50%;
@@ -62,15 +85,19 @@ min-width:300px;
   margin: 0 auto; /* Căn giữa */
 	filter: grayscale(0%);
 }
-#language-popup, #language-popup-overlay {
+
+
+/* Hiệu ứng fade-in */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
     opacity: 1;
-    transition: opacity 0.3s ease-in-out;
+  }
 }
-
-.hidden {
-    opacity: 0 !important;
-}
-
 
 .nav .nav-item .nav-link{ color:#666666 }
 
@@ -85,7 +112,9 @@ min-width:300px;
 	.hocvan-hide{display:flex ; flex-direction: column}
 	.skill{ margin-top: 180px}
 	.bg-lienhe .lienhe h1{padding-left: 20px}
-	
+	.soft1 p{ font-size: 0.8em; word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;}
 }
 
 .hide {display: none}
@@ -152,7 +181,7 @@ min-width:300px;
 	animation-timing-function: ease-in-out;
 	animation-direction: alternate
 }
-.knm-icon{position: relative}
+.knm-icon{position: relative; display:flex}
 .soft1 p{margin:0; padding:0}
 .soft1{ display: flex;
 align-items:center;
@@ -161,6 +190,7 @@ border: 1px #C9C9C9 solid;
 border-radius: 10px;
 color: #666666;
 margin:10px 10px 0 0
+border-box:
 }
 
 .knc-icon{
@@ -962,8 +992,10 @@ left: 80%}
 	h4{font-size: 2em}
 	h5{font-size: 1.75em}
 	section{min-height:600px; margin:10rem 0}
+  .eng-knm{ transform: translateY(-15%) scale(0.8);}
 	.knm-icon img{min-width: 250px; position:absolute; top:-40px; margin-left: 100px}
 	.hardskill{ margin-top: 170px}
+  .eng-knc{ transform: translateY(-12%) scale(0.8);}
 	.knc-1 img{ width:70%}
 	.knc-icon img{min-width: 250px}
 	.proj { margin-top: 250px; transform: scale(1.7)}
@@ -977,4 +1009,9 @@ top: 75%;
 left: 80%}
 	.bg-lienhe{margin: 50px 0}
 	.btn-info { font-size: 1.5rem}
-}
+  #language-switcher{
+   transform: scale(1.5);}
+   .social-net a i{
+    transform: scale(1.5);}
+    
+   }

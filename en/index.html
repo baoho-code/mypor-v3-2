@@ -16,20 +16,10 @@
 </head>
 
 <body style="padding-top:50px">
-	<!---Pop-up Language--->
-	<div id="language-popup-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 999; display: none;"></div>
-	<div id="language-popup">
-  <h2>Chọn ngôn ngữ</h2>
-  <button onclick="loadContent('vi')">Tiếng Việt</button>
-<button onclick="loadContent('en')">English</button>
-</div>
- 
-	<div id="loading-animation" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid #ccc; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); z-index: 1001; display: none;">
-    <img id="loading-media" src="../video/Test-character-hi.gif" alt="Loading...">
-  </div>
+	
 	
 	<!---Phần Spyscrool--->
-	<div id="main-content">
+	
 		<nav id="navbar-example2" class="navbar bg-light px-3 mb-3 fixed-top shadow">
   <a class="navbar-brand text-primary" href="#">BaoHo <span class="georama text-info">space</span></a>
   <ul class="nav nav-pills">
@@ -82,7 +72,7 @@
 	  <div class="row">
 	  <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
 		  <div class="knm-icon">
-		  <img src="../images/SVG/Soft-sk.png" alt="" style="position: absolute;left: 60px; margin-top:50px; z-index:100"  class="ani1">
+		  <img src="../images/SVG/Soft-sk.png" alt="" style="position: absolute;left: 60px; margin-top:50px; z-index:100"  class="ani1 eng-knm">
 		  <img src="../images/SVG/KyNangMem-2@2x.png" alt="" style="position: absolute; left:40px;margin-top:20px; z-index:90" class="ani2">
 		<img src="../images/SVG/KyNangMem-3@2x.png" alt="" style="position: absolute; left:30px; margin-top:10px; z-index:80" class="ani3">
 			  <img src="../images/SVG/KyNangMem-4@2x.png" alt="" style="position: absolute; left:20px; z-index:70" class="ani4"> 
@@ -143,7 +133,7 @@
 		
 		 
 		<div class="knc-icon">
-	<img src="../images/SVG/Hard-sk.png" alt="" style="position:absolute; right:60px; z-index:100; margin-top:50px" class="ani5">
+	<img src="../images/SVG/Hard-sk.png" alt="" style="position:absolute; right:60px; z-index:100; margin-top:50px" class="ani5 eng-knc">
 			 <img src="../images/SVG/Knc-2.png" alt="" style="position:absolute; right:50px; z-index:90; margin-top:20px" class="ani6">
 			<img src="../images/SVG/Knc-3.png" alt="" style="position:absolute; right:40px; z-index:80; margin-top:10px" class="ani7">
 			<img src="../images/SVG/Knc-4.png" alt="" style="position:absolute; right:30px; z-index:70;" class="ani8">
@@ -990,7 +980,7 @@
     <textarea class="form-control" rows="5" id="comment" name="message" required></textarea>
 		</div>
 	
-    <button type="submit" class="btn btn-info">Gửi thông điệp</button>
+    <button type="submit" class="btn btn-info">Send now</button>
 </form>
 		 
 		 
@@ -1001,8 +991,12 @@
 	
 		
   <div class="d-flex bd-highlight text-primary">
-  <div class="p-2 flex-grow-1 bd-highlight">Copyright from BaoHo <span><i class="far fa-copyright"></i></span> 2025&nbsp;&nbsp;</div>
-	  <div class="p-2  bd-highlight"><span class="sm-line mx-2"></span> <i class="fas fa-mobile fs-5 me-2" style="color: #597394"> </i> 094-8472801</div>
+  <div class="p-2 flex-grow-1 bd-highlight">Copyright from BaoHo <span><i class="far fa-copyright"></i></span> 2025&nbsp;&nbsp;
+  </div>
+	  <div class="p-2  bd-highlight "><span class="sm-line mx-2"></span><select id="language-switcher" class="form-select form-select-sm" style="width: auto; display: inline-block; color:#5e7290; margin-top: -10px;">
+      <option value="vi">Vie</option>
+      <option value="en">Eng</option>
+    </select></div>
   <div class="p-2  bd-highlight social-net"> <span class="sm-line mx-2"></span>
 	  Follow me:
 	  <a href="https://www.instagram.com/bao_ho_/"><i class="fab fa-instagram fs-5 mx-2"></i></a>
@@ -1011,7 +1005,7 @@
 	</div>
 		</div>
 	
-</div>
+
 		</div><!-- Div cuối cùng Spyscroll -->
 	
 	<!-- Modal cho xem ảnh fullscreen -->
@@ -1030,6 +1024,7 @@
 	
 	<script src="../js/jquery-3.6.0.min.js"></script>
 	<script src="../js/pop-up-lang.js"></script>
+ <script src="../js/lang-Switch.js"></script>
 	<script src="../js/jquery.waypoints.min.js"></script>
 	<script src="../js/jquery.countup.js"></script>
 	<script src="../js/aos.js"></script>
